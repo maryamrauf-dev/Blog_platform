@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="/css/style.css">
+
+<section class="screen active" id="login">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h1>Welcome back</h1>
+      <p class="sub">Log in to keep reading and writing.</p>
+
+<form action="/login" method="POST">
+    
+      <div class="field"><label>Email</label><input
+  type="email"
+  name="email"
+  placeholder="you@example.com"
+  required
+></div>
+      <div class="field"><label>Password</label><input
+  type="password"
+  name="password"
+  placeholder="••••••••"
+  required
+></div>
+     <button
+  type="submit"
+  class="btn btn-primary"
+  style="width:100%; justify-content:center;"
+>
+  Sign in
+</button>
+</form>
+<div class="divider">
+    <span>OR</span>
+</div>
+<a href="/auth/google" class="google-btn">
+    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+    <span>Continue with Google</span>
+</a>
+      <p class="foot-link">New here? <a href="/register">Create an account</a></p>
+    </div>
+  </div>
+</section>

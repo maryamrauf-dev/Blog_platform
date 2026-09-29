@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inkly — UI mockup</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<section class="screen active" id="edit">
+  <%- include("partials/navbar") %>
+  <div class="form-page" style="max-width:640px; margin:0 auto;">
+    <h1 class="serif">Edit article</h1>
+    <form
+  action="/articles/<%= article._id %>/edit"
+  method="POST"
+>
+    <div class="field"><label>Title</label>
+      <input
+  type="text"
+  name="title"
+  value="<%= article.title %>"
+  required
+></div>
+    <div class="field"><label>Short description</label><textarea
+  name="description"
+  rows="2"
+  required
+><%= article.description %></textarea></div>
+    <div class="field"><label>Content</label><textarea
+  name="content"
+  rows="10"
+  required
+><%= article.content %></textarea></div>
+    <div class="form-actions">
+      <a href="/my-articles" class="btn">
+  Cancel
+</a>
+     <button
+  type="submit"
+  class="btn btn-primary"
+>
+  Save changes
+</button>
+    </div>
+    </form>
+  </div>
+  <%- include("partials/footer") %>
+</section>
+
+</body>
+</html>

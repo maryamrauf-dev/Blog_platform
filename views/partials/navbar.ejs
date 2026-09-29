@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <div class="logo">Ink<span>ly</span></div>
+
+  <div class="navlinks">
+    <a href="/">Home</a>
+    <a href="/articles">All Articles</a>
+    <a href="/my-articles">My Articles</a>
+
+    <% if (currentUser) { %>
+      <span class="nav-user">Hi, <%= currentUser.name %></span>
+      <form action="/logout" method="POST" style="display:inline;">
+        <button type="submit" class="btn btn-sm">Logout</button>
+      </form>
+    <% } else { %>
+      <a href="/login" class="btn btn-sm">Login</a>
+      <a href="/register" class="btn btn-primary btn-sm">Sign Up</a>
+    <% } %>
+  </div>
+</nav>

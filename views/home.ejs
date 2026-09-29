@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inkly</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<section class="screen active" id="home">
+  <%- include("partials/navbar") %>
+  <div class="hero">
+    <h1 class="serif">Ideas worth reading.<br>Stories worth sharing.</h1>
+    <p>A small, quiet space to write and read honest articles.</p>
+
+    <!-- route to go to create_article page -->
+<a href="/articles/create" class="btn btn-primary"> Start Writing </a>
+
+</div>
+  <h2 class="section-title">Latest articles</h2>
+  <div class="grid2">
+  
+    <% articles.forEach(article => { %><div class="card">
+    <h3><%= article.title %></h3> 
+    <p class="desc">  <%= article.description %></p>
+    <div class="meta"><span><%= article.userId.name %></span>
+      <span>·</span>
+      <span><%= article.createdAt.toLocaleDateString() %></span>
+    </div>
+    <a class="read-link" href="/articles/<%= article._id %>" > Read article →</a>
+  </div><% }) %>
+  
+</div>
+  <%- include("partials/footer") %>
+</section>
+
+</body>
+</html>

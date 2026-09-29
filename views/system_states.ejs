@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inkly — UI mockup</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<section class="screen" id="errors">
+  <%- include("partials/navbar") %>
+
+  <div class="divider-label">404 — article not found</div>
+  <div class="error-block card" style="margin:0 auto;">
+    <div class="error-code">404</div>
+    <h1>Article not found</h1>
+    <p>The article you're looking for may have been removed or the link is broken.</p>
+    <a href="#" class="btn btn-primary">Back to articles</a>
+  </div>
+
+  <div class="divider-label">403 — unauthorized</div>
+  <div class="error-block card" style="margin:0 auto;">
+    <div class="error-code" style="color:var(--danger);">403</div>
+    <h1>You don't have permission</h1>
+    <p>You can only edit or delete articles you've written yourself.</p>
+    <a href="#" class="btn">Back to articles</a>
+  </div>
+
+  <div class="divider-label">Authentication required</div>
+  <div class="error-block card" style="margin:0 auto;">
+    <h1>Please log in</h1>
+    <p>You need an account to write or manage articles on Inkly.</p>
+    <a href="#" class="btn btn-primary">Log in</a>
+  </div>
+
+  <div class="divider-label">Form validation + success messages</div>
+  <div style="max-width:400px; margin:0 auto;">
+    <div class="alert alert-error">Passwords do not match. Please try again.</div>
+    <div class="alert alert-success">Article published successfully.</div>
+    <div class="alert alert-success">Changes saved.</div>
+    <div class="alert alert-success">Article deleted.</div>
+  </div>
+
+  <div class="divider-label">Delete confirmation modal</div>
+  <div class="modal-veil">
+    <div class="modal-box">
+      <h3>Delete this article?</h3>
+      <p>This can't be undone. The article will be permanently removed.</p>
+      <div class="modal-actions">
+        <button class="btn btn-sm">Cancel</button>
+        <button class="btn btn-danger btn-sm">Delete</button>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inkly — UI mockup</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<section class="screen active" id="articles">
+ <%- include("partials/navbar") %>
+
+  <div class="page-header">
+    <h1 class="serif">All articles.</h1>
+    <p>Explore stories, ideas, lessons, and experiences from our writers.</p>
+  </div>
+
+  <h2 class="section-title">Latest articles</h2>
+
+  <div class="grid2">
+
+  <% articles.forEach(article => { %>
+
+    <div class="card">
+
+      <h3><%= article.title %></h3>
+
+      <p class="desc">
+        <%= article.description %>
+      </p>
+
+      <div class="meta">
+        <span><%= article.userId.name %></span>
+        <span>·</span>
+        <span>
+          <%= article.createdAt.toLocaleDateString() %>
+        </span>
+      </div>
+
+      <a
+        class="read-link"
+        href="/articles/<%= article._id %>"
+      >
+        Read article →
+      </a>
+
+    </div>
+
+  <% }) %>
+
+</div>
+
+  <%- include("partials/footer") %>
+</section>
+
+</body>
+</html>

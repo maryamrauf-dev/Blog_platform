@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inkly — UI mockup</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<section class="screen active" id="article">
+  <%- include("partials/navbar") %>
+ <a href="/articles" class="btn-text">
+  ← Back to articles
+</a>
+  <div class="article-head">
+   <h1 class="serif"> <%= article.title %></h1>
+   
+   <div class="meta"> <span>By <%= article.userId.name %></span>
+  <span>·</span>
+  <span> <%= article.createdAt.toLocaleDateString() %> </span> </div>
+    <% if (isOwner) { %>
+
+  <div class="article-actions">
+
+    <a
+      href="/articles/<%= article._id %>/edit"
+      class="btn btn-sm"
+    >
+      Edit
+    </a>
+
+    <form
+      action="/articles/<%= article._id %>/delete"
+      method="POST"
+      style="display:inline;"
+    >
+      <button
+        type="submit"
+        class="btn btn-danger btn-sm"
+      >
+        Delete
+      </button>
+    </form>
+
+  </div>
+
+<% } %>
+  </div>
+   <div class="article-body serif"><%= article.content %> </div>
+  <div class="author-box">
+   <div class="avatar">
+  <%= article.userId.name.substring(0, 2).toUpperCase() %>
+</div>
+    <div style="font-weight:600; font-size:14.5px;">
+  <%= article.userId.name %>
+</div>
+  </div>
+  <%- include("partials/footer") %>
+</section>
+
+</body>
+</html>

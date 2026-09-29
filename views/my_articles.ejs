@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inkly — UI mockup</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<section class="screen active" id="myarticles">
+  <%- include("partials/navbar") %>
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; flex-wrap:wrap; gap:12px;">
+    <h1 class="serif" style="font-size:26px; margin:0;">My articles</h1>
+    <a
+  href="/articles/create"
+  class="btn btn-primary btn-sm"
+>
+  + New article
+</a>
+  </div>
+  <% articles.forEach(article => { %>
+
+  <div class="row-card">
+
+    <div>
+
+      <h3 style="margin:0 0 4px; font-size:16px;">
+        <%= article.title %>
+      </h3>
+
+      <div class="meta">
+        <%= article.createdAt.toLocaleDateString() %>
+        ·
+        <%= article.description %>
+      </div>
+
+    </div>
+
+    <div class="row-actions">
+
+      <a
+        href="/articles/<%= article._id %>"
+        class="btn btn-sm"
+      >
+        View
+      </a>
+
+      <a
+        href="/articles/<%= article._id %>/edit"
+        class="btn btn-sm"
+      >
+        Edit
+      </a>
+
+      <form
+        action="/articles/<%= article._id %>/delete"
+        method="POST"
+        style="display:inline;"
+      >
+        <button
+          type="submit"
+          class="btn btn-danger btn-sm"
+        >
+          Delete
+        </button>
+      </form>
+
+    </div>
+
+  </div>
+
+<% }) %>
+  <%- include("partials/footer") %>
+</section>
+</body>
+</html>
