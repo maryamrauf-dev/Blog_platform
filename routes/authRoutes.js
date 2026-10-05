@@ -72,8 +72,9 @@ router.post("/register", async (req, res) => {
       passwordHash: hashedPassword
     });
     await user.save();
-    // Registration successful
-    res.redirect("/login");
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "1h" });
+    res.cookie("token", token, { httpOnly: true });
+    res.redirect("/");
 
   } catch (error) {
     console.error("Registration error:", error);

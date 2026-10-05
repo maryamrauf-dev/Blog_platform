@@ -13,7 +13,7 @@
   a{color:inherit; text-decoration:none;}
   .serif{font-family:Georgia,"Times New Roman",serif;}
 
-  /* --- screen switcher (mockup navigation aid, not part of Inkly UI) --- */
+  /* --- screen switcher (mockup navigation aid, not part of Memento UI) --- */
   .switcher{
     position:sticky; top:0; z-index:50; background:#1F1D1A; padding:10px 16px;
     display:flex; gap:6px; overflow-x:auto; white-space:nowrap;
@@ -27,7 +27,7 @@
   .screen{display:none; max-width:1040px; margin:0 auto; padding:0 20px 64px;}
   .screen.active{display:block;}
 
-  /* --- navbar (Inkly app chrome) --- */
+  /* --- navbar (Memento app chrome) --- */
   .navbar{
     display:flex; align-items:center; justify-content:space-between;
     padding:18px 0; border-bottom:1px solid var(--border); margin-bottom:36px; flex-wrap:wrap; gap:12px;
@@ -37,6 +37,7 @@
   .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap;}
   .navlinks a{font-size:14px; color:var(--sub);}
   .navlinks a:hover{color:var(--text);}
+  .navlinks a.btn-primary,.navlinks a.btn-primary:hover{color:#fff;}
   .nav-user{font-size:14px; color:var(--sub);}
 
   /* --- buttons --- */
