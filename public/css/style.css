@@ -115,6 +115,14 @@
   input:focus,textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-light);}
   .foot-link{text-align:center; font-size:13.5px; color:var(--sub); margin-top:18px;}
   .foot-link a{color:var(--accent); font-weight:600;}
+  .divider{
+    display:flex; align-items:center; gap:10px;
+    margin:18px 0;
+    font-size:13px; font-weight:600; color:var(--text);
+  }
+  .divider::before,.divider::after{
+    content:""; flex:1; height:1px; background:var(--border);
+  }
 
   /* --- alerts --- */
   .alert{border-radius:8px; padding:11px 14px; font-size:13.5px; margin-bottom:18px; border:1px solid;}
