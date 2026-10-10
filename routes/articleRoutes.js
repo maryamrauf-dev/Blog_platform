@@ -47,13 +47,11 @@ router.post(
 
       const {
         title,
-        description,
         content
       } = req.body;
 
       const article = new Post({
         title,
-        description,
         content,
         userId: req.userId
       });
@@ -176,7 +174,6 @@ router.post(
       }
 
       article.title = req.body.title;
-      article.description = req.body.description;
       article.content = req.body.content;
 
       await article.save();

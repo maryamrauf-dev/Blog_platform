@@ -1,13 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sign in — Memento</title>
 <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
 
 <section class="screen active" id="login">
   <div class="auth-wrap">
     <div class="auth-card">
+
+      <div class="auth-brand">Me<span>mento</span></div>
+
       <h1>Welcome back</h1>
       <p class="sub">Log in to keep reading and writing.</p>
 
+      <% if (error) { %>
+        <div class="alert alert-error"><%= error %></div>
+      <% } %>
+
 <form action="/login" method="POST">
-    
+
       <div class="field"><label>Email</label><input
   type="email"
   name="email"
@@ -39,3 +54,6 @@
     </div>
   </div>
 </section>
+
+</body>
+</html>

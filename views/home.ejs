@@ -23,7 +23,7 @@
   
     <% articles.forEach(article => { %><div class="card">
     <h3><%= article.title %></h3> 
-    <p class="desc">  <%= article.description %></p>
+    <p class="desc">  <%= article.content.length > 160 ? article.content.substring(0, 160) + '…' : article.content %></p>
     <div class="meta"><span><%= article.userId.name %></span>
       <span>·</span>
       <span><%= article.createdAt.toLocaleDateString() %></span>

@@ -27,7 +27,7 @@
       <h3><%= article.title %></h3>
 
       <p class="desc">
-        <%= article.description %>
+        <%= article.content.length > 160 ? article.content.substring(0, 160) + '…' : article.content %>
       </p>
 
       <div class="meta">

@@ -32,7 +32,7 @@
       <div class="meta">
         <%= article.createdAt.toLocaleDateString() %>
         ·
-        <%= article.description %>
+        <%= article.content.length > 100 ? article.content.substring(0, 100) + '…' : article.content %>
       </div>
 
     </div>

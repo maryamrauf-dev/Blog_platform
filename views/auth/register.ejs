@@ -1,10 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Create account — Memento</title>
 <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
 
 <section class="screen active" id="register">
   <div class="auth-wrap">
     <div class="auth-card">
+
+      <div class="auth-brand">Me<span>mento</span></div>
+
       <h1>Create your account</h1>
       <p class="sub">It takes less than a minute.</p>
+
+      <% if (error) { %>
+        <div class="alert alert-error"><%= error %></div>
+      <% } %>
+
 <form action="/register" method="POST">
       <div class="field"><label>Name</label><input
   type="text"
@@ -43,3 +59,6 @@
     </div>
   </div>
 </section>
+
+</body>
+</html>

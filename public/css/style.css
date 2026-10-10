@@ -24,8 +24,17 @@
   }
   .switcher button.active{background:#fff; color:#1F1D1A; border-color:#fff; font-weight:600;}
 
-  .screen{display:none; max-width:1040px; margin:0 auto; padding:0 20px 64px;}
-  .screen.active{display:block;}
+  .screen{
+    display:none;
+    min-height:100vh;
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 20px 0;
+    flex-direction:column;
+  }
+  .screen.active{display:flex;}
+  .screen > *:not(.footer){flex-shrink:0;}
+  .screen > .footer{margin-top:auto; padding-top:24px;}
 
   /* --- navbar (Memento app chrome) --- */
   .navbar{
@@ -85,7 +94,15 @@
     display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; flex-shrink:0;}
 
   /* --- auth --- */
-  .auth-wrap{display:flex; justify-content:center; padding:70px 16px;}
+  .auth-brand{
+    text-align:center;
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:-0.5px;
+    margin-bottom:28px;
+  }
+  .auth-brand span{color:var(--accent);}
+  .auth-wrap{display:flex; justify-content:center; padding:60px 16px;}
   .auth-card{background:#fff; border:1px solid var(--border); border-radius:16px; padding:40px 36px; width:100%; max-width:400px;}
   .auth-card h1{font-size:24px; margin:0 0 6px;}
   .auth-card .sub{color:var(--sub); font-size:14px; margin-bottom:26px;}
@@ -134,7 +151,6 @@
   .divider-label{font-size:13px; color:var(--muted); margin:34px 0 14px; font-weight:600;}
 
   .footer{
-  margin-top:64px;
   padding:24px 0;
   border-top:1px solid var(--border);
   display:flex;
