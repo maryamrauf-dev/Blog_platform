@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Post = require("../models/posts");
 const authMiddleware = require("../middleware/authmiddleware");
+const optionalAuth = require("../middleware/optionalAuth");
 
 
 //public all articles so everyone can read
@@ -97,7 +98,7 @@ router.get(
 
 router.get(
   "/articles/:id",
-  authMiddleware,
+  optionalAuth,   // public — anyone can read; auth is optional (point 8)
   async (req, res) => {
 
     try {

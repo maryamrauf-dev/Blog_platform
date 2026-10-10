@@ -48,16 +48,24 @@ app.use(passport.initialize());
 app.use("/", authRoutes);
 app.use("/", articleRoutes);
 
-// MONGODB
+// GLOBAL ERROR HANDLER (point 6)
+app.use((err, req, res, next) => {
+  console.error("Unhandled error:", err);
+  res.status(err.status || 500).send("Something went wrong. Please try again.");
+});
+
+// MONGODB — start server only after DB is ready (points 5 & 7)
+const PORT = process.env.PORT || 3000;
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected");
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
   })
   .catch((error) => {
-    console.error("MongoDB connection error:", error);
+    console.error("MongoDB connection error — server not started:", error);
+    process.exit(1);
   });
-
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
-});

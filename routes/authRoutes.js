@@ -6,10 +6,29 @@ const Post = require("../models/posts");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
+const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 const optionalAuth = require("../middleware/optionalAuth");
 
 const JWT_SECRET = process.env.JWT_SECRET;
+
+// Rate limiters (point 2)
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5,
+  message: "Too many login attempts. Please try again in 15 minutes.",
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const registerLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 10,
+  message: "Too many accounts created from this IP. Please try again later.",
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 
 //public all articles, everyone can read without logging in
 router.get("/", optionalAuth, async (req, res) => {
@@ -51,7 +70,7 @@ router.get("/register", redirectIfLoggedIn, (req, res) => {
 });
 
 // POST REGISTER
-router.post("/register", async (req, res) => {
+router.post("/register", registerLimiter, async (req, res) => {
   try {
     const { fullname, email, password } = req.body;
     // Basic validation
@@ -73,7 +92,11 @@ router.post("/register", async (req, res) => {
     });
     await user.save();
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "1h" });
-    res.cookie("token", token, { httpOnly: true });
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
     res.redirect("/");
 
   } catch (error) {
@@ -90,7 +113,7 @@ router.get("/login", redirectIfLoggedIn, (req, res) => {
 });
 
 // POST LOGIN
-router.post("/login", async (req, res) => {
+router.post("/login", loginLimiter, async (req, res) => {
   try {
     const { email, password } = req.body;
     // Basic validation
@@ -110,7 +133,11 @@ router.post("/login", async (req, res) => {
     // Create JWT
     const token = jwt.sign({ userId: user._id},JWT_SECRET,{expiresIn: "1h"});
     // Store JWT in cookie
-    res.cookie("token", token, {httpOnly: true});
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
     // Login successful
     res.redirect("/");
 
@@ -139,6 +166,8 @@ router.get(
 
     res.cookie("token", token, {
       httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
     });
 
     res.redirect("/");
